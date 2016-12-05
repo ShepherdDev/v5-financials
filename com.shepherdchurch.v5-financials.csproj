@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Migrations\001_Attributes.cs" />
     <Compile Include="Migrations\002_ExportedAttribute.cs" />
+    <Compile Include="Migrations\003_ConfigureBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

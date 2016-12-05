@@ -48,8 +48,6 @@ namespace RockWeb.Plugins.com_shepherdchurch.v5_financials
         {
             ScriptManager.GetCurrent( this.Page ).RegisterPostBackControl( lbDownload );
 
-            _batch = new FinancialBatchService( new RockContext() ).Get( 26867 );
-
             if ( !string.IsNullOrWhiteSpace( PageParameter( "batchId" ) ) )
             {
                 _batch = new FinancialBatchService( new RockContext() ).Get( PageParameter( "batchId" ).AsInteger() );
@@ -178,6 +176,7 @@ namespace RockWeb.Plugins.com_shepherdchurch.v5_financials
             tbAccountingPeriod.Text = GetUserPreference( "com.shepherdchurch.exporttogl.accountingperiod" );
             tbJournalType.Text = GetUserPreference( "com.shepherdchurch.exporttogl.journaltype" );
             nbAlreadyExported.Visible = _batch.GetAttributeValue( "GLExported" ).AsBoolean();
+            nbNotClosed.Visible = _batch.Status != BatchStatus.Closed;
 
             pnlExportModal.Visible = true;
             mdExport.Show();
