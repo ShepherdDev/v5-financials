@@ -58,6 +58,11 @@ namespace RockWeb.Plugins.com_shepherdchurch.v5_financials
                 _batch.LoadAttributes();
                 IsExported = (_batch.GetAttributeValue( "GLExported" ).AsBoolean() == true ? 1 : 0);
             }
+
+            if ( !IsPostBack && !UserCanEdit )
+            {
+                lbShowExport.Visible = false;
+            }
         }
 
         #endregion
@@ -214,6 +219,11 @@ namespace RockWeb.Plugins.com_shepherdchurch.v5_financials
             var parameters = RockPage.PageParameters();
 
             var records = GLRecordsForBatch( _batch, dpDate.SelectedDate.Value, tbAccountingPeriod.Text.Trim(), tbJournalType.Text.Trim() );
+
+            if ( !UserCanEdit )
+            {
+                return;
+            }
 
             //
             // Update the batch to reflect that it has been exported.
