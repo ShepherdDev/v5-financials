@@ -245,7 +245,7 @@ namespace RockWeb.Plugins.com_shepherdchurch.v5_financials
             //
             Page.EnableViewState = false;
             Page.Response.Clear();
-            Page.Response.ContentType = "text/csv";
+            Page.Response.ContentType = "text/plain";
             Page.Response.AppendHeader( "Content-Disposition", "attachment; filename=GLTRN2000.txt" );
             Page.Response.Write( string.Join( "\r\n", records.Select( r => r.ToString() ).ToArray() ) );
             Page.Response.Flush();
